@@ -3,6 +3,8 @@ import random
 class MatrixProcessor:
     def __init__(self):
         self.matrix = []
+        print("Создание объекта MatrixProcessor...")  # Отладочное сообщение
+        self.menu()  # Вызов метода menu при создании объекта
 
     def input_matrix(self):
         """Ввод матрицы вручную."""
@@ -18,8 +20,8 @@ class MatrixProcessor:
 
     def generate_matrix(self):
         """Генерация случайной матрицы."""
-        rows = random.randint(2, 5)
-        cols = random.randint(2, 5)
+        rows = random.randint(2, 5)  # Случайное количество строк
+        cols = random.randint(2, 5)   # Случайное количество столбцов
         self.matrix = [[random.randint(-10, 10) for _ in range(cols)] for _ in range(rows)]
         
         print("Сгенерированная матрица:")
@@ -33,8 +35,10 @@ class MatrixProcessor:
 
         sums = [sum(abs(x) for x in row) for row in self.matrix]
         
+        # Создаем новую матрицу с добавленным столбцом сумм
         new_matrix = [row + [sums[i]] for i, row in enumerate(self.matrix)]
         
+        # Сортируем по убыванию суммы модулей
         new_matrix.sort(key=lambda x: x[-1], reverse=True)
         
         return new_matrix
@@ -45,11 +49,13 @@ class MatrixProcessor:
             print("Матрица пуста.")
             return
         
+        print("Текущая матрица:")
         for row in self.matrix:
             print("\t".join(map(str, row)))
 
     def menu(self):
         """Основное меню приложения."""
+        print("Запуск меню...")  # Отладочное сообщение
         while True:
             print("\nМеню:")
             print("1) Ввод матрицы вручную")
